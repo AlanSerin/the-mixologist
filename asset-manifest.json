@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/the-mixologist/static/css/main.6d8062cd.chunk.css",
+    "main.js": "/the-mixologist/static/js/main.5c98b369.chunk.js",
+    "main.js.map": "/the-mixologist/static/js/main.5c98b369.chunk.js.map",
+    "runtime-main.js": "/the-mixologist/static/js/runtime-main.249e5987.js",
+    "runtime-main.js.map": "/the-mixologist/static/js/runtime-main.249e5987.js.map",
+    "static/css/2.150d169a.chunk.css": "/the-mixologist/static/css/2.150d169a.chunk.css",
+    "static/js/2.da0eacce.chunk.js": "/the-mixologist/static/js/2.da0eacce.chunk.js",
+    "static/js/2.da0eacce.chunk.js.map": "/the-mixologist/static/js/2.da0eacce.chunk.js.map",
+    "static/js/3.78350136.chunk.js": "/the-mixologist/static/js/3.78350136.chunk.js",
+    "static/js/3.78350136.chunk.js.map": "/the-mixologist/static/js/3.78350136.chunk.js.map",
+    "index.html": "/the-mixologist/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/the-mixologist/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.6d8062cd.chunk.css.map": "/the-mixologist/static/css/main.6d8062cd.chunk.css.map",
+    "static/js/2.da0eacce.chunk.js.LICENSE.txt": "/the-mixologist/static/js/2.da0eacce.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.249e5987.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.da0eacce.chunk.js",
+    "static/css/main.6d8062cd.chunk.css",
+    "static/js/main.5c98b369.chunk.js"
+  ]
+}
