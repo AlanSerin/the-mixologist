@@ -210,8 +210,8 @@ function App() {
   const assignList = (jsonData) => {
     console.log(drinklist);
     let y = [];
-    if(jsonData.drinks.length > 20){
-      for(var i= 0; i < 20; i++){
+    if(jsonData.drinks.length > 10){
+      for(var i= 0; i < 10; i++){
         y.push(jsonData.drinks[i])
         console.log(y);
       }
