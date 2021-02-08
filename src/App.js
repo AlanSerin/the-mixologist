@@ -87,11 +87,12 @@ const NameBody = ({name,image,ingredients,instructions}) => {
 const ListBody = ({list,details}) => {
   return(
     <div className="listbody my-5">
+      <Container fluid>
         <Row> 
             {list.map((prop,index) => {
              return (
               <Col key={index} xs={12} sm={6} md={4} lg={3}>
-                <Card className="mb-5" style={{ width: '20rem' }}>
+                <Card className="mb-5" style={{ width: '18rem' }}>
                   <Card.Img variant="top" src={prop.strDrinkThumb} />
                   <Card.Body>
                     <Card.Title className="cardTitle">{prop.strDrink}</Card.Title>
@@ -106,6 +107,7 @@ const ListBody = ({list,details}) => {
              );
             })}
         </Row>
+      </Container>
     </div>
   );
 }
