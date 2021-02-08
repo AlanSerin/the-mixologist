@@ -18,7 +18,7 @@ const Header = ({callfunction,toggleList}) =>{
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/">Surprise me</Nav.Link>
+          <Nav.Link href="/the-mixologist/">Surprise me</Nav.Link>
           <NavDropdown title="Search option" id="basic-nav-dropdown">
             <NavDropdown.Item onClick={() => changeSearchType("name")}>Search by name</NavDropdown.Item>
             <NavDropdown.Item onClick={() => changeSearchType("ingredient")}>Search by ingredient</NavDropdown.Item>
