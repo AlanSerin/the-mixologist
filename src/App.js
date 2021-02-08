@@ -87,6 +87,7 @@ const NameBody = ({name,image,ingredients,instructions}) => {
 const ListBody = ({list,details}) => {
   return(
     <div className="listbody my-5">
+      <Container fluid>
         <Row> 
             {list.map((prop,index) => {
              return (
@@ -106,6 +107,7 @@ const ListBody = ({list,details}) => {
              );
             })}
         </Row>
+      </Container>
     </div>
   );
 }
@@ -210,8 +212,8 @@ function App() {
   const assignList = (jsonData) => {
     console.log(drinklist);
     let y = [];
-    if(jsonData.drinks.length > 10){
-      for(var i= 0; i < 10; i++){
+    if(jsonData.drinks.length > 20){
+      for(var i= 0; i < 20; i++){
         y.push(jsonData.drinks[i])
         console.log(y);
       }
