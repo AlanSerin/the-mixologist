@@ -2,37 +2,44 @@ import { Navbar,Nav,NavDropdown,Form,FormControl,Button,Card,Image,Container,Row
 import './App.css';
 import React , { useState, Component } from 'react';
 
-const Header = ({callfunction,toggleList}) =>{
+const Header = ({callfunction,toggleList,searchRandom}) =>{
+
+  const enterController = (e) => {
+    e.preventDefault();
+  }
+
  
   const [searchType,changeSearchType] = useState("name");
   const [text,changeText] = useState("name");
   let pltext = `Search by ${searchType}`;
 
   const startSearch = () => {
-    console.log(searchType);
+    console.log("anan");
   }
 
   return(
-    <Navbar className="px-5" bg="light" expand="lg">
-      <Navbar.Brand href="" onClick = {toggleList}>The Mixologist</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="/the-mixologist/">Surprise me</Nav.Link>
-          <NavDropdown title="Search option" id="basic-nav-dropdown">
-            <NavDropdown.Item onClick={() => changeSearchType("name")}>Search by name</NavDropdown.Item>
-            <NavDropdown.Item onClick={() => changeSearchType("ingredient")}>Search by ingredient</NavDropdown.Item>
-            <NavDropdown.Item onClick={() => changeSearchType("glass")}>Search by glass</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Search non-alcoholic drinks</NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-        <Form inline>
-          <FormControl onChange={(e)=> {changeText(e.target.value)}} type="text" placeholder= {pltext} className="mr-sm-2" />
-          <Button onClick={() => callfunction(text,searchType)} variant="outline-info">Search</Button>
-        </Form>
-      </Navbar.Collapse>
-    </Navbar>
+    <div className="navbardiv">
+      <Navbar bg="none" expand="lg">
+        <Navbar.Brand className="Appname" href="" onClick = {toggleList}>The Mixologist</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link onClick ={searchRandom}>Surprise me</Nav.Link>
+            <NavDropdown title="Search option" id="basic-nav-dropdown">
+              <NavDropdown.Item onClick={() => changeSearchType("name")}>Search by name</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => changeSearchType("ingredient")}>Search by ingredient</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => changeSearchType("glass")}>Search by glass</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4">Search non-alcoholic drinks</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+          <Form onSubmit={enterController} inline>
+            <FormControl onChange={(e)=> {changeText(e.target.value)}} type="text" placeholder= {pltext} className="mr-sm-2" />
+            <Button onClick={() => callfunction(text,searchType)} variant="outline-info">Search</Button>
+          </Form>
+        </Navbar.Collapse>
+      </Navbar>
+    </div>
   );
 }
 
@@ -43,10 +50,9 @@ const NameBody = ({name,image,ingredients,instructions}) => {
 
   return (
     <div className="vertical-center">
-      <Container>
         <Row>
           <Col xs={12} md={6}>
-            <Image className="w-100" src={image} rounded />
+            <Image className="w-75" src={image} rounded />
           </Col>
           <Col xs={12} md={6}>
             <Row className = "justify-content-start">
@@ -63,40 +69,43 @@ const NameBody = ({name,image,ingredients,instructions}) => {
               </Col>
               <Col xs={12} md={6}>
                 <h3>Instructions</h3>
-                <div className="mt-4" variant = "flush">{instructions}</div>
+                <div className="mt-4" variant = "flush">{instructions.map((instruction,index) => {
+                  if(index > 7)
+                    return null
+                  else {
+                    return <p key={index} >{instruction}</p>
+                  }
+                })}</div>
               </Col>
             </Row>
           </Col>
         </Row>
-      </Container>
     </div>
   );
 }
 
 const ListBody = ({list,details}) => {
   return(
-    <div>
-      <Container className="my-5">
+    <div className="listbody my-5">
         <Row> 
             {list.map((prop,index) => {
              return (
-              <Col key={index} xs={12} sm={6} md={4}>
-                <Card className="mb-5" style={{ width: '18rem' }}>
+              <Col key={index} xs={12} sm={6} md={4} lg={3}>
+                <Card className="mb-5" style={{ width: '20rem' }}>
                   <Card.Img variant="top" src={prop.strDrinkThumb} />
                   <Card.Body>
-                    <Card.Title>{prop.strDrink}</Card.Title>
+                    <Card.Title className="cardTitle">{prop.strDrink}</Card.Title>
                     <Card.Text>
                       Some quick example text to build on the card title and make up the bulk of
                       the card's content.
                     </Card.Text>
-                    <Button onClick = {() => details(prop.idDrink)} variant="primary">See the recipe</Button>
+                    <p className="recipebutton" variant="link" onClick = {() => details(prop.idDrink)}>See recipe</p>
                   </Card.Body>
                 </Card>
               </Col>
              );
             })}
         </Row>
-      </Container>
     </div>
   );
 }
@@ -108,7 +117,7 @@ function App() {
   const [name,changeName] = useState();
   const [image,changeImage] = useState();
   const [ingredients,changeIngredients] = useState([]);
-  const [instructions,changeInstructions] = useState();
+  const [instructions,changeInstructions] = useState([]);
   const [drinklist,changeDrinklist] = useState([]);
 
   React.useEffect(() => {
@@ -202,7 +211,7 @@ function App() {
     console.log(drinklist);
     let y = [];
     if(jsonData.drinks.length > 10){
-      for(var i= 0; i < 10; i++){
+      for(var i= 0; i < 20; i++){
         y.push(jsonData.drinks[i])
         console.log(y);
       }
@@ -222,7 +231,7 @@ function App() {
   const assignData = (jsonData) => {
     changeName(jsonData.drinks[0].strDrink);
     changeImage(jsonData.drinks[0].strDrinkThumb);
-    changeInstructions(jsonData.drinks[0].strInstructions);
+    changeInstructions(jsonData.drinks[0].strInstructions.split("."));
     console.log(image);
     let y = [];
     for(var ing in jsonData.drinks[0]){
@@ -239,7 +248,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header toggleList = {() => changeShowList(false)} callfunction={getData} />
+      <Header searchRandom = {() => getRandom()} toggleList = {() => changeShowList(false)} callfunction={getData} />
       {showList === false ?<NameBody 
         name = {name}
         image = {image}

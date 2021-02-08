@@ -1,3 +1,15 @@
+.Appname{
+  cursor: pointer;
+}
+.cardTitle{
+  color: rgb(34, 57, 158);
+}
+
+.navbardiv{
+  padding-left:5%;
+  padding-right:5%;
+}
+
 .drinktitle{
   font-size: 4rem;
 }
@@ -14,12 +26,26 @@
   height: 100vh;
 }
 
+.listbody{
+  padding-left: 6%;
+  padding-right: 0;
+}
+
 .vertical-center {
   margin: 0;
-  width: 100%;
+  width: 88%;
   position: absolute;
   top: 50%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.recipebutton{
+  font-size: 1rem;
+  color: rgb(241, 87, 118);
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 0;
+  cursor: pointer;
 }
